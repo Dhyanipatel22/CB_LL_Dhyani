@@ -1,0 +1,17 @@
+  public static ListNode[] quickSort_(ListNode head) {
+    if (head == null || head.next == null)
+      return new ListNode[] { head, head };
+
+    int len = length(head);
+    int pivotIdx = len / 2;
+    ListNode[] segregatedElements = segregate(head, pivotIdx);
+
+    ListNode[] left = quickSort_(segregatedElements[0]);
+    ListNode[] right = quickSort_(segregatedElements[2]);
+
+    return mergeElements(left, segregatedElements[1], right);
+  }
+
+  public static ListNode quickSort(ListNode head) {
+    return quickSort_(head)[0];
+  }
