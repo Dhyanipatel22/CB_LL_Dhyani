@@ -1,0 +1,18 @@
+ public static ListNode IntersectionNodeInTwoLL(ListNode headA, ListNode headB) {
+        int l1 = length(headA);
+        int l2 = length(headB);
+        ListNode biggerList = l1 > l2 ? headA : headB;
+        ListNode smallerList = l1 > l2 ? headB : headA;
+
+        int diff = Math.max(l1, l2) - Math.min(l1, l2);
+        while (diff-- > 0) {
+            biggerList = biggerList.next;
+        }
+
+        while (biggerList != smallerList) {
+            biggerList = biggerList.next;
+            smallerList = smallerList.next;
+        }
+
+        return biggerList;
+    }
